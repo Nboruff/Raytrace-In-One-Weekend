@@ -49,7 +49,7 @@ int main()
 
     std::cout << "P3\n" << image_width << ' ' << image_height << "\n255\n";
 
-
+    auto R = cos(pi/4);
     hittable_list world;
 
     world.add(make_shared<sphere>(point3(0, 0, -1), 0.5, make_shared<lambertian>(color(.1, .2, .5))));
@@ -57,7 +57,7 @@ int main()
     world.add(make_shared<sphere>(point3(1, 0, -1), 0.5, make_shared<metal>(color(.8, .6, .2), 0.3)));
     world.add(make_shared<sphere>(point3(-1, 0, -1), 0.5, make_shared<dielectric>(1.5)));
     world.add(make_shared<sphere>(point3(-1, 0, -1), -0.45, make_shared<dielectric>(1.5)));
-    camera cam;
+    camera cam(point3(-2, 2, 1), point3(0, 0, -1), vec3(0, 1, 0), 90, aspect_ratio);
 
     for (int j = image_height - 1; j >= 0; --j)
     {
